@@ -1,7 +1,4 @@
-class Tag():
-    """Class for a tag
-    """
-
+class Tags():
     def __init__(self, id, name):
         self.id = id
         self.name = name

@@ -1,9 +1,9 @@
-from models import Mood
+from models import entrytag
 import sqlite3
 import json
 
 
-def get_all_moods():
+def get_all_entrytags():
     # Open a connection to the database
     with sqlite3.connect("./dailyjournal.sqlite3") as conn:
 
@@ -14,11 +14,12 @@ def get_all_moods():
         db_cursor.execute("""
         SELECT
             a.id,
-            a.label
-        FROM Moods a
+            a.entry_id,
+            a.tag_id
+        FROM entrytags a
         """)
 
-        moods = []
+        tags = []
 
         # Convert rows of data into a Python list
         dataset = db_cursor.fetchall()
@@ -27,10 +28,10 @@ def get_all_moods():
         for row in dataset:
 
             # Create an animal instance from the current row
-            mood = Mood(row['id'], row['label'])
+            tag = entrytag(row['id'], row['entry_id'], row['tag_id'])
 
     # Add the dictionary representation of the animal to the list
-            moods.append(mood.__dict__)
+            tags.append(tag.__dict__)
 
     # Use `json` package to properly serialize list as JSON
-    return json.dumps(moods)
+    return json.dumps(tags)

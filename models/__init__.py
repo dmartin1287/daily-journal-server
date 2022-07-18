@@ -1,4 +1,4 @@
-from .entry import Entry
+from .entries import Journalentries
 from .mood import Mood
-from .entryTag import EntryTag
-from .tag import Tag
+from .tag import Tags
+from .entrytags import entrytag
